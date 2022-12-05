@@ -8,7 +8,12 @@ const Products = () => {
   return (
     <div className="container-products">
       {inventory.map((item) => (
-        <Link key={item.id} to={{ pathname: `/products/${item.id}` }}>
+        <Link
+          key={item.id}
+          to={{
+            pathname: `/products/${item.title.replace(/\s+/g, "").trim()}`,
+          }}
+        >
           <div className="bloc-card">
             <div className="product-card">
               <div className="visual-aspect">
