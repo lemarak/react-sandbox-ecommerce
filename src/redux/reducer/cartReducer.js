@@ -21,14 +21,23 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       } else {
         const cartUpdated = [...state.cart];
         cartUpdated.push(action.payload);
+
         return {
           cart: cartUpdated,
         };
       }
 
     case "UPDATEITEM":
-      return {};
+      const indexItemUpdate = state.cart.findIndex(
+        (obj) => obj.id === action.payload.id
+      );
+      const cartUpdated = [...state.cart];
+      cartUpdated.splice(indexItemUpdate, 1, action.payload);
+
+      return { cart: cartUpdated };
   }
+
+  return state;
 };
 
 export default cartReducer;
